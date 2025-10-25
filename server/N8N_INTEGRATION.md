@@ -2,6 +2,22 @@
 
 The server endpoints now return binary file data directly, making them compatible with n8n workflows.
 
+## ⚠️ Important: n8n Configuration Required
+
+For files larger than 30MB, n8n must use **filesystem mode** instead of default mode:
+
+```env
+N8N_BINARY_DATA_MODE=filesystem
+N8N_BINARY_DATA_TTL=60
+```
+
+**Without this configuration, you'll get errors like:**
+```
+Cannot create a string longer than 0x1fffffe8 characters
+```
+
+See [../N8N_CONFIGURATION.md](../N8N_CONFIGURATION.md) for complete setup instructions.
+
 ## Endpoints for n8n
 
 ### 1. Download Video (Binary Output)
